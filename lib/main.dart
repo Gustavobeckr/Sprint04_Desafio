@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list/pages/home_page.dart';
-import 'widgets/theme_store_widget.dart';
+import 'package:todo_list/layers/ui/pages/home_page.dart';
+import 'layers/ui/components/theme_store_widget.dart';
 
 void main() {
   runApp(MyApp());
@@ -14,7 +14,7 @@ class MyApp extends StatelessWidget {
       builder: (context, child) {
         return MaterialApp(
           debugShowCheckedModeBanner: false,
-          title: 'ToDo List',
+          title: 'Todo List',
           darkTheme: ThemeData(
             primarySwatch: Colors.blue,
             brightness: Brightness.dark,

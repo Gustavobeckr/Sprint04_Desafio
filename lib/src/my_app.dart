@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:todo_list/src/layers/ui/pages/filter_page.dart';
-import 'layers/ui/components/theme_store_widget.dart';
-import 'layers/ui/pages/home_page.dart';
+import 'package:todo_list/src/presentation/pages/filter_page.dart';
+import 'presentation/components/theme_store_widget.dart';
+import 'presentation/pages/home_page.dart';
 
 class MyApp extends StatelessWidget {
   static const HOME_PAGE = '/';

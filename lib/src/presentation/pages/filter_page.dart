@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/src/data/services/filter/filter_model.dart';
+import 'package:todo_list/src/data/services/filter/filter_services.dart';
 
 class FilterPage extends StatefulWidget {
   const FilterPage({super.key});
@@ -10,7 +12,9 @@ class FilterPage extends StatefulWidget {
 class _FilterPageState extends State<FilterPage> {
   final TextEditingController _titleController = TextEditingController();
   final TextEditingController _descriptionController = TextEditingController();
-  final TextEditingController _dateController = TextEditingController();
+
+  final Filter _filter = Filter();
+  final FilterServices _filterServices = FilterServices();
 
   _formDailog(BuildContext context) {
     return showDialog(
@@ -32,13 +36,6 @@ class _FilterPageState extends State<FilterPage> {
                       hintText: 'Write a description',
                       labelText: 'Description'),
                 ),
-                TextFormField(
-                  keyboardType: TextInputType.number,
-                  controller: _dateController,
-                  decoration: const InputDecoration(
-                    hintText: 'Write a date',
-                  ),
-                ),
               ]),
             ),
             actions: [
@@ -50,8 +47,9 @@ class _FilterPageState extends State<FilterPage> {
               TextButton(
                   onPressed: () {
                     Navigator.pop(context);
-                    print(
-                        'Title: ${(_titleController).text}, Description: ${(_descriptionController).text}');
+                    _filter.title = _titleController.text;
+                    _filter.description = _descriptionController.text;
+                    _filterServices.saveFilter(_filter);
                   },
                   child: const Text('Confirm'))
             ],

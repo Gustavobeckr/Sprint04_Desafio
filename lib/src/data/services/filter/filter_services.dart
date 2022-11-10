@@ -15,4 +15,12 @@ class FilterServices {
   readFilterById(filterId) async {
     return await _repository.readDataById('filters', filterId);
   }
+
+  editFilter(Filter filter) async {
+    return await _repository.editData('filters', filter.filterMap());
+  }
+
+  deleteFilter(FilterId) async {
+    return await _repository.deleteData('filters', FilterId);
+  }
 }

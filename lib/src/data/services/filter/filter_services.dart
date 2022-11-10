@@ -11,4 +11,8 @@ class FilterServices {
   readFilter() async {
     return await _repository.readData('filters');
   }
+
+  readFilterById(filterId) async {
+    return await _repository.readDataById('filters', filterId);
+  }
 }

@@ -19,6 +19,9 @@ class DatabaseConection {
         onCreate: (Database database, int version) async {
       await database.execute(
           'CREATE TABLE filters (id INTEGER PRIMARY KEY, title TEXT, description TEXT)');
+
+      await database.execute(
+          "CREATE TABLE todos(id INTEGER PRIMARY KEY, title TEXT, description TEXT)");
     });
     return database;
   }

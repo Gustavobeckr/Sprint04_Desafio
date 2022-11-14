@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:todo_list/src/my_app.dart';
 import 'package:todo_list/src/presentation/components/drawer_bar.dart';
 import '../components/theme_store_widget.dart';
 
@@ -21,6 +22,12 @@ class HomePage extends StatelessWidget {
             },
           ),
         ],
+      ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () {
+          Navigator.of(context).pushNamed(MyApp.TODO_PAGE);
+        },
+        child: const Icon(Icons.add),
       ),
       drawer: const DrawerBar(),
     );

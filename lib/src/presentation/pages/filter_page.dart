@@ -49,7 +49,7 @@ class _FilterPageState extends State<FilterPage> {
     filter = await _filterServices.readFilterById(filterId);
     setState(() {
       _editTitleController.text = filter[0]['title'];
-      _editTitleController.text = filter[0]['description'];
+      _editDescriptionController.text = filter[0]['description'];
     });
     _formEditDailog(context);
   }

@@ -2,39 +2,47 @@ import 'package:sqflite/sqflite.dart';
 import 'package:todo_list/src/data/local_data_sources/database_connection.dart';
 
 class Repository {
-  final DatabaseConection _databaseConection = DatabaseConection();
+  static final DatabaseConection _databaseConection = DatabaseConection();
 
   static Database? _database;
 
   Future<Database?> get database async {
-    _database ??= await _databaseConection.setDatabase();
+    _database ??= await _databaseConection.getDatabase();
 
     return _database;
   }
 
-  insertData(table, data) async {
-    var connection = await database;
+  Future insertData(table, data) async {
+    final connection = await database;
+
     return await connection!.insert(table, data);
   }
 
-  readData(table) async {
-    var connection = await database;
+  Future readData(table) async {
+    final connection = await database;
+
     return await connection!.query(table);
   }
 
-  readDataById(table, itemId) async {
-    var connection = await database;
+  Future readDataById(table, itemId) async {
+    final connection = await database;
     return await connection!.query(table, where: 'id=?', whereArgs: [itemId]);
   }
 
-  editData(table, data) async {
-    var connection = await database;
+  Future editData(table, data) async {
+    final connection = await database;
     return await connection!
         .update(table, data, where: 'id=?', whereArgs: [data['id']]);
   }
 
-  deleteData(table, itemId) async {
-    var connection = await database;
+  Future deleteData(table, itemId) async {
+    final connection = await database;
     return await connection!.rawDelete('DELETE FROM $table WHERE id = $itemId');
+  }
+
+  Future readDateByFilter(table, filter, filterValue) async {
+    final connection = await database;
+    return await connection!
+        .query(table, where: '$filter', whereArgs: [filterValue]);
   }
 }
